@@ -1,0 +1,44 @@
+---
+title: "Developing Data Products - Week 2"
+author: "Matt Hawkins"
+date: "14 May 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Intro
+
+This webpage contains a map zoomed in on Area 51. The location is marked with an escaped alien.
+
+## Packages
+
+First we load the required packages
+
+```{r packages, message=FALSE, warning=FALSE}
+library(leaflet)
+library(dplyr)
+```
+
+## Creating Marker
+
+To customise the visual slightly, we can replace the default pin marker with an alien.
+
+```{r marker}
+alienIcon <- makeIcon(
+  iconUrl = "C:/Users/Matt/Dropbox/Coursera/Data Science/dataproducts/week2/alien.png",
+  iconWidth = 100, iconHeight = 100,
+  iconAnchorX = 0, iconAnchorY = 0
+)
+```
+
+## Creating Map
+
+We can now stick the marker on the relevant location on the map
+
+```{r map}
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(lat = 37.24804 , lng = -115.800155, popup = "Area 51", icon = alienIcon)
+```
